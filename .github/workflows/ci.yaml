@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get code
+      uses: actions/checkout@v3
+
+    - name: Build kernel module
+      run: make
+
+    - name: Load kernel module
+      run: sudo insmod scream.ko
+
+    - name: Check for device
+      run: ls /dev/scream
+
+    - name: Read from device
+      run: head -c 2048 /dev/scream
+    
+    - name: Unload kernel module
+      run: sudo rmmod scream.ko
