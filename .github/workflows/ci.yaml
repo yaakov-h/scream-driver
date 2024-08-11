@@ -8,11 +8,8 @@ on:
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-    - name: Get Linux kernel headers
-      run: sudo apt install -y linux-headers-$(uname -r)
-
     - name: Get code
       uses: actions/checkout@v3
 
