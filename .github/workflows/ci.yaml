@@ -20,7 +20,7 @@ jobs:
       run: sudo insmod scream.ko
 
     - name: Check for device
-      run: ls /dev/scream
+      run: ls -l /dev/scream
 
     - name: Read from device
       run: head -c 2048 /dev/scream
