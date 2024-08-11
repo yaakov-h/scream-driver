@@ -10,7 +10,7 @@ MODULE_AUTHOR("Yaakov");
 MODULE_DESCRIPTION("Scream Device");
 MODULE_LICENSE("GPL");
 
-#define DEVICE_NAME "scream_device"
+#define DEVICE_NAME "scream"
 #define CLASS_NAME "scream_class"
 
 static int major_number;
