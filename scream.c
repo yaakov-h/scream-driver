@@ -36,20 +36,17 @@ static void __exit scream_module_exit(void) {
     printk(KERN_INFO "[scream] done.\n");
 }
 
-static int scream_device_open(struct inode *inode, struct file *file)
-{
+static int scream_device_open(struct inode *inode, struct file *file) {
     printk(KERN_INFO "[scream] Device open\n");
     return 0;
 }
 
-static int scream_device_release(struct inode *inode, struct file *file)
-{
+static int scream_device_release(struct inode *inode, struct file *file) {
     printk(KERN_INFO "[scream] Device close\n");
     return 0;
 }
 
-static ssize_t scream_device_read(struct file *file, char __user *buf, size_t count, loff_t *offset)
-{
+static ssize_t scream_device_read(struct file *file, char __user *buf, size_t count, loff_t *offset) {
     uint8_t rand;
 
     for (size_t i = 0; i < count; i++)
