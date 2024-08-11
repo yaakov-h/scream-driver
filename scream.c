@@ -4,9 +4,6 @@ MODULE_AUTHOR("Yaakov");
 MODULE_DESCRIPTION("Scream Device");
 MODULE_LICENSE("GPL");
 
-#define DEVICE_NAME "scream"
-#define CLASS_NAME "scream_class"
-
 static int scream_device_open(struct inode*, struct file*);
 static int scream_device_release(struct inode*, struct file*);
 static ssize_t scream_device_read(struct file*, char*, size_t, loff_t*);
