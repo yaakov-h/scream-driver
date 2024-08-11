@@ -20,10 +20,12 @@ static struct cdev scream_cdev;
 static int scream_device_open(struct inode*, struct file*);
 static int scream_device_release(struct inode*, struct file*);
 static ssize_t scream_device_read(struct file*, char*, size_t, loff_t*);
+static ssize_t scream_device_write(struct file*, const char*, size_t, loff_t*);
 
 static struct file_operations fops = {
     .open = scream_device_open,
     .read = scream_device_read,
+    .write = scream_device_write,
     .release = scream_device_release,
 };
 
@@ -50,7 +52,8 @@ static int __init scream_module_init(void) {
         return PTR_ERR(scream_device);
     }
 
-    // Initialize the cdev structure and add it to the kernel
+    printk(KERN_INFO "[scream] %s/%s device registered.", CLASS_NAME, DEVICE_NAME);
+
     cdev_init(&scream_cdev, &fops);
     int add_result = cdev_add(&scream_cdev, MKDEV(major_number, 0), 1);
     if (add_result < 0) {
@@ -91,6 +94,12 @@ static int scream_device_release(struct inode* node, struct file* file)
 static ssize_t scream_device_read(struct file* file, char* __user user_buffer, size_t size, loff_t* offset)
 {
     printk(KERN_INFO "[scream] reading from device.\n");
+    return 0;
+}
+
+static ssize_t scream_device_write(struct file* file, const char* __user user_buffer, size_t size, loff_t* offset)
+{
+    printk(KERN_INFO "[scream] writing to device.\n");
     return 0;
 }
 
